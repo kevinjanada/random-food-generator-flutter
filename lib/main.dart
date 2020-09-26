@@ -54,7 +54,7 @@ class Header extends StatelessWidget {
 
 
 class GenerateButton extends StatelessWidget {
-  FoodRepository _foodRepository = FoodRepository();
+  final FoodRepository _foodRepository = FoodRepository();
   @override
   Widget build(BuildContext context) {
     return Column(
