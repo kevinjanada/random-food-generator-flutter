@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'food_repository.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -53,18 +54,26 @@ class Header extends StatelessWidget {
 
 
 class GenerateButton extends StatelessWidget {
+  FoodRepository _foodRepository = FoodRepository();
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        RaisedCircularButton(),
+        RaisedCircularButton(onPressed: generateFood),
         Header(text: "Generate!"),
       ]
     );
   }
+
+  void generateFood() async {
+    Food food = await _foodRepository.getRandom();
+    print(food.toString());
+  }
 }
 
 class RaisedCircularButton extends StatelessWidget {
+  final Function onPressed;
+  RaisedCircularButton({ this.onPressed });
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
@@ -72,7 +81,7 @@ class RaisedCircularButton extends StatelessWidget {
       minWidth: 120.0,
       child: RaisedButton(
         shape: CircleBorder(),
-        onPressed: () {},
+        onPressed: onPressed,
         color: Color.fromRGBO(172, 75, 28, 1.0),
       ),
     );
