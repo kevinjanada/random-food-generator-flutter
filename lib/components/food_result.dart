@@ -19,7 +19,7 @@ class FoodResult extends StatelessWidget {
       image = Image.asset(currFood.img, height: 200, width: 200);
     } else {
       text = Text("Click on Generate button!", style: TextStyle( fontSize: 20));
-      image = Image.asset('images/plate.png', height: 200, width: 200);
+      image = Image.asset('images/plate-question.png', height: 200, width: 200);
     }
 
     if (isLoading) {

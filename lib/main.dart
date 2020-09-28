@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:random_food_generator/repositories/food_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import 'ad_manager.dart';
 import 'app_states/food_state.dart';
 import 'components/food_result.dart';
 import 'package:provider/provider.dart';
@@ -8,17 +10,67 @@ import 'components/generate_button.dart';
 import 'components/header.dart';
 import 'colors.dart';
 
+// Build and sign:
+// https://flutter.dev/docs/deployment/android
+// TODO: Admob
+//  - Need to setup firebase project
+// https://codelabs.developers.google.com/codelabs/admob-ads-in-flutter/#3
+// TODO: Deploy:
+// https://developer.android.com/studio/publish/app-signing#app-signing-google-play
+
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => FoodState(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<FoodState>(create: (_) => FoodState()),
+      ],
       child: App(),
     )
+    // ChangeNotifierProvider(
+    //   create: (context) => FoodState(),
+    //   child: App(),
+    // )
   );
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  _AppState createState() => _AppState();
+}
+class _AppState extends State<App> {
+  BannerAd _bannerAd;
+
+  Future<void> _initAdMob() {
+    /// Initialize AdMob SDK
+    return FirebaseAdMob.instance.initialize(appId: AdManager.appId);
+  }
+
+  void _loadBannerAd() {
+    _bannerAd
+      ..load()
+      ..show(anchorType: AnchorType.bottom);
+  }
+
+  @override
+  void initState() {
+    _initAdMob();
+
+    _bannerAd = BannerAd(
+      adUnitId: AdManager.bannerAdUnitId,
+      size: AdSize.banner,
+    );
+    _loadBannerAd();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return (
         MaterialApp(
@@ -39,8 +91,8 @@ class App extends StatelessWidget {
                           Expanded(
                             flex: 4,
                             child: Container(
-                                alignment: Alignment.center,
-                                child: FoodResult(),
+                              alignment: Alignment.center,
+                              child: FoodResult(),
                             ),
                           ),
                           Expanded(
@@ -69,6 +121,7 @@ class App extends StatelessWidget {
     );
   }
 }
+
 
 class FindInGoogleMapsButton extends StatelessWidget {
   @override
