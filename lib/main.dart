@@ -12,7 +12,7 @@ import 'colors.dart';
 
 // Build and sign:
 // https://flutter.dev/docs/deployment/android
-// TODO: Admob
+// Admob:
 //  - Need to setup firebase project
 // https://codelabs.developers.google.com/codelabs/admob-ads-in-flutter/#3
 // TODO: Deploy:

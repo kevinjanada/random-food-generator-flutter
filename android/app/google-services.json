@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "530304296768",
+    "firebase_url": "https://random-food-generator.firebaseio.com",
+    "project_id": "random-food-generator",
+    "storage_bucket": "random-food-generator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530304296768:android:214f5fc559d39aebabfca5",
+        "android_client_info": {
+          "package_name": "com.kevinjanada.random_food_generator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530304296768-uvhv68gth0bk4lnd3jl070jgrqaebqoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6c_x5V7D88tG2DzCmVBMVGP8m6t_BVwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530304296768-uvhv68gth0bk4lnd3jl070jgrqaebqoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
